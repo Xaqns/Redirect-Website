@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+    <form method="POST">
+        <label for="redirect_url">Redirect URL:</label>
+        <input type="text" id="redirect_url" name="redirect_url" value="{{ redirect_url }}">
+        <br>
+        <label for="auto_redirect">Enable Auto-Redirect:</label>
+        <input type="checkbox" id="auto_redirect" name="auto_redirect" {% if auto_redirect %}checked{% endif %}>
+        <br>
+        <button type="submit">Update</button>
+    </form>
+    <h2>Logs</h2>
+    <table>
+        <tr>
+            <th>IP</th>
+            <th>User Agent</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log[1] }}</td>
+            <td>{{ log[2] }}</td>
+            <td>{{ log[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
